@@ -19,5 +19,5 @@ ones from starting, thus leading to situations hard to debug.
 
 ## Dev
 
-You can easily enable the **dev config** by setting the `LGHS_WEBSITE_CONFIG` 
-environment variable to `lghs_dev_config.py`.
+You can easily enable the **dev config** by setting the `LGHS_WEB_CONFIG` 
+environment variable to `config/dev_config.py`.
