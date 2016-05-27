@@ -1,3 +1,5 @@
+# Default config for LGHS website.
+
 DEBUG = False
 
 OPENING_HOURS = {

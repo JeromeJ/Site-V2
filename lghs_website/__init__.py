@@ -15,6 +15,22 @@ app.config.from_object(default_config)
 # Eg: LGHS_WEB_CONFIG='config/dev_config.py'
 app.config.from_envvar('LGHS_WEB_CONFIG', silent=True)
 
+try:
+	# user_config.py is situated at the same level as run.py and must contain a SECRET_KEY
+	app.config.from_object('user_config')
+except ImportError:
+	import os
+	
+	# Generate the SECRET_KEY as per recommended in the doc
+	# http://flask.pocoo.org/docs/0.10/quickstart/
+	app.secret_key = os.urandom(24)
+
+	with open('user_config.py', 'w', encoding='utf-8') as f:
+		f.write('# Keep this really secret!\nSECRET_KEY = {}\n'.format(repr(app.secret_key)))
+	
+	print('Created the SECRET_KEY and stored it in user_config.py .')
+	print()
+
 from .views import general
 from .utils import hs_is_open
 
